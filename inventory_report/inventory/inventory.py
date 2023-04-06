@@ -15,17 +15,16 @@ class Inventory:
                 )
                 product_data = [product for product in products_csv]
 
-        elif file_path.endswith(".json"):
+        if file_path.endswith(".json"):
             with open(file_path, encoding="utf-8") as file:
                 products_json = json.load(file)
                 product_data = [product for product in products_json]
 
-        else:
+        if file_path.endswith(".xml"):
             with open(file_path, encoding="utf-8") as file:
-                product_xml = xmltodict.parse(file.read())["dataset"][
+                product_data = xmltodict.parse(file.read())["dataset"][
                     "record"
                 ]
-                product_data = [product for product in product_xml]
 
         if report_type == "simples":
             return SimpleReport.generate(product_data)
