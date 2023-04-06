@@ -15,12 +15,12 @@ class Inventory:
                 )
                 product_data = [product for product in products_csv]
 
-        if file_path.endswith(".json"):
+        elif file_path.endswith(".json"):
             with open(file_path, encoding="utf-8") as file:
                 products_json = json.load(file)
                 product_data = [product for product in products_json]
 
-        if file_path.endswith(".xml"):
+        else:
             with open(file_path, encoding="utf-8") as file:
                 product_data = xmltodict.parse(file.read())["dataset"][
                     "record"
