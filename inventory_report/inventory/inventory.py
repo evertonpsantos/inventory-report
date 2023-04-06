@@ -22,9 +22,10 @@ class Inventory:
 
         else:
             with open(file_path, encoding="utf-8") as file:
-                product_data = xmltodict.parse(file.read())["dataset"][
+                product_xml = xmltodict.parse(file.read())["dataset"][
                     "record"
                 ]
+                product_data = [product for product in product_xml]
 
         if report_type == "simples":
             return SimpleReport.generate(product_data)
